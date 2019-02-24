@@ -1,4 +1,4 @@
-# Azure Blueprints Managegment tool
+# Azure Blueprints Management tool
 
 
 ## Introduction
@@ -9,14 +9,14 @@ Helps creating, viewing, publishing, assigning / unassigning, and deleting Azure
 
 The **BlueprintMgmt** tool provides options to create, view, publish, assign / unassign, and delete Azure blueprints based on JSON files stored on client's computer.
 
-The tool uses direct APIs calls. The Blueprint APIs documentation is avaiable here:
+The tool uses direct APIs calls. The Blueprint APIs documentation is available here:
 [Blueprints REST API reference](https://docs.microsoft.com/en-us/rest/api/blueprints/)
 
 Although the **Microsoft.Azure.Management.Blueprint** Nuget package is available for blueprints management, it is still in preview and multiple attempts to use it caused versioning conflicts with **System.Net.Http**. For more information about the Nuget packages, visit the reference page:
 [Blueprint Nuget package](https://www.nuget.org/packages/Microsoft.Azure.Management.Blueprint)
 
 
-## Prerequisits
+## Prerequisites
 
 The application must be registered in Azure AD.
 A script is provided to register the application
@@ -45,7 +45,7 @@ Install-Module AzureAD
 
 Particular to **Azure Blueprint**, you must give high-level permissions to both **BlueprintMgmt** and **Azure Blueprint** applications.
 **Azure Blueprint** has a static Application Id (<code>f71766dc-90d9-4b7d-bd9d-4499c4331c3f</code>), but its Azure AD Object Id is different on different tenants.
-**Azure Blueprint** is registered as Enterprise Application. In order to get information, run the following PowerShell script:
+**Azure Blueprint** is registered as Enterprise Application. To get information about the application, run the following PowerShell script:
 
 ``` PowerShell
 # Azure Blueprint
@@ -92,7 +92,7 @@ command:
  - get - returns the blueprint specified by --name argument
  - get-artifacts - returns the blueprint artifacts specified by --name argument
  - get-artifact - returns the blueprint artifact specified by --name and --artifact-name argument
- - publish - publihes a blueprint specified by --name and --version arguments
+ - publish - publishes a blueprint specified by --name and --version arguments
  - assign - assigns a blueprint specified by --name argument
  - unassign - unassigns a blueprint specified by --name and --assignment-name arguments
  - delete - deletes a blueprint specified by --name argument
@@ -114,7 +114,7 @@ Examples
 
  - returns Artifact template-storage-account for Blueprint blueprint1234
 
-<code>BlueprintMgmt.exe get-artifact --name blueprint1234 --atifact-name template-storage-account</code>
+<code>BlueprintMgmt.exe get-artifact --name blueprint1234 --artifact-name template-storage-account</code>
 
  - publishes version 1.0 for blueprint1234
 
@@ -146,8 +146,8 @@ The application uses the following Nuget packages:
 
 ## Configuration settings
 
-The configuration settings are stored in *app.config*. For production applcations it is recommended to secure sensitive information like Tenant ID, Application ID and secret, Management Group ID, Subscription ID etc.
-You will need to provide your own values for attibute values in <code>[...]</code>: 
+The configuration settings are stored in *app.config*. For production applications it is recommended to secure sensitive information like Tenant ID, Application ID and secret, Management Group ID, Subscription ID etc.
+You will need to provide your own values for attribute values in <code>[...]</code>: 
 
 ``` xml
   <appSettings>
@@ -186,6 +186,11 @@ Sample blueprints and assignments are provided, see the *blueprints* and *assign
 
 The *assignments* directory contains the parameter values passed to the blueprint assignment. For daemon services or CI/CD pipelines, this directory should contain JSON files generated at runtime with pre-defined blueprint parameter values. 
 
+## Import / Export using PowerShell
+
+A handy script is available for importing / exporting blueprints using PowerShell.
+See this [link](https://www.powershellgallery.com/packages/Manage-AzureRMBlueprint/2.2) for information on how to install and use the **Manage-AzureRMBlueprint** PowerShell script.
+
 ## Resources
  - [Azure Blueprints Overview](https://docs.microsoft.com/en-us/azure/governance/blueprints/overview)
  - [Quick-start create using Portal](https://docs.microsoft.com/en-us/azure/governance/blueprints/create-blueprint-portal)
@@ -195,6 +200,6 @@ The *assignments* directory contains the parameter values passed to the blueprin
  - [API-list](https://docs.microsoft.com/en-us/rest/api/blueprints/blueprints/list)
  - [Blueprint Nuget package](https://www.nuget.org/packages/Microsoft.Azure.Management.Blueprint)
  - [Import/Export using PowerShell](https://www.powershellgallery.com/packages/Manage-AzureRMBlueprint/2.2)
- - [Import/Export of AzureBlueprints using Manage-AzureRMBlueprint PowerShell Script](https://www.youtube.com/watch?v=SMORUIPhKd8&feature=youtu.be)
+ - [Import/Export of Azure Blueprints using Manage-AzureRMBlueprint PowerShell Script](https://www.youtube.com/watch?v=SMORUIPhKd8&feature=youtu.be)
  - [Assigning Azure Blueprints using Microsoft Graph](https://www.developmentsindigital.com/posts/2018-12-18-azure-blueprint-with-microsoft-graph/)
  - [Blueprint SDK](https://github.com/Azure/azure-sdk-for-net/tree/master/src/SDKs/Blueprint)

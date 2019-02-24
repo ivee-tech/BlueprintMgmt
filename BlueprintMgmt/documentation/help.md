@@ -10,7 +10,7 @@ command:
  - get - returns the blueprint specified by --name argument
  - get-artifacts - returns the blueprint artifacts specified by --name argument
  - get-artifact - returns the blueprint artifact specified by --name and --artifact-name argument
- - publish - publihes a blueprint specified by --name and --version arguments
+ - publish - publishes a blueprint specified by --name and --version arguments
  - assign - assigns a blueprint specified by --name argument
  - unassign - unassigns a blueprint specified by --name and --assignment-name arguments
  - delete - deletes a blueprint specified by --name argument
@@ -32,7 +32,7 @@ BlueprintMgmt.exe get-artifacts --name blueprint1234
 
  - returns Artifact template-storage-account for Blueprint blueprint1234
 
-BlueprintMgmt.exe get-artifact --name blueprint1234 --atifact-name template-storage-account
+BlueprintMgmt.exe get-artifact --name blueprint1234 --artifact-name template-storage-account
 
  - publishes version 1.0 for blueprint1234
 
