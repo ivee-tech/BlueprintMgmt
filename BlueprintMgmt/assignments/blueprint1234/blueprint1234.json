@@ -1,0 +1,36 @@
+{
+  "properties": {
+    "blueprintId": "/providers/Microsoft.Management/managementGroups/{ManagementGroupId}/providers/Microsoft.Blueprint/blueprints/{BlueprintName}",
+    "resourceGroups": {
+      "storageRG": {
+        "name": "StorageAccount",
+        "location": "AustraliaEast"
+      }
+    },
+    "parameters": {
+      "storageAccountType": {
+        "value": "Standard_GRS"
+      },
+      "tagName": {
+        "value": "CostCenter"
+      },
+      "tagValue": {
+        "value": "ContosoIT"
+      },
+      "contributors": {
+        "value": [
+          "{ObjectId}"
+        ]
+      },
+      "owners": {
+        "value": [
+          "{ObjectId}"
+        ]
+      }
+    }
+  },
+  "identity": {
+    "type": "systemAssigned"
+  },
+  "location": "AustraliaEast"
+}

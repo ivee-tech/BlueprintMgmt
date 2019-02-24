@@ -1,0 +1,55 @@
+{
+    "properties": {
+        "template": {
+            "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+            "contentVersion": "1.0.0.0",
+            "parameters": {
+                "keyVaultName": {
+                    "type": "string",
+                    "metadata": {
+                        "description": "Specifies the name of the key vault."
+                    }
+                },
+                "secretsObject": {
+                    "type": "object",
+                    "defaultValue": "{}",
+                    "metadata": {
+                        "description": "Specifies all secrets {\"secretName\":\"\",\"secretValue\":\"\"} wrapped in a secure object."
+                    }
+                }
+            },
+            "resources": [
+                {
+                    "type": "Microsoft.KeyVault/vaults/secrets",
+                    "name": "[concat(parameters('keyVaultName'), '/', parameters('secretsObject').secrets[copyIndex()].secretName)]",
+                    "apiVersion": "2018-02-14",
+                    "copy": {
+                        "name": "secretsCopy",
+                        "count": "[length(parameters('secretsObject').secrets)]"
+                    },
+                    "properties": {
+                        "value": "[parameters('secretsObject').secrets[copyIndex()].secretValue]",
+                        "contentType": "application/x-pkcs12"
+                    },
+                    "dependsOn": [
+                        "[concat('Microsoft.KeyVault/vaults/', parameters('keyVaultName'))]"
+                    ]
+                }
+            ]
+        },
+        "resourceGroup": "ResourceGroup",
+        "parameters": {
+            "keyVaultName": {
+                "value": "[parameters(\u0027certKeyVault_keyVaultName\u0027)]"
+            },
+            "secretsObject": {
+                "value": "[parameters(\u0027certKeyVault_secretsObject\u0027)]"
+            }
+        },
+        "dependsOn": [],
+        "displayName": "Key Vault certificates",
+        "description": ""
+    },
+    "kind": "template",
+    "type": "Microsoft.Blueprint/blueprints/artifacts"
+}
